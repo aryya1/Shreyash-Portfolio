@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHREYASH PAGAR – Portfolio</title>
+<meta name="description" content="Portfolio of Shreyash Pagar: selected web design and development work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #f2f0e9;
+    --surface: #e6e7df;
+    --ink: #202724;
+    --muted: #67716b;
+    --line: #cbd0c6;
+    --accent: #e94d2e;
+    --mark: #d6ed5c;
+    --display: "Manrope", "Helvetica Neue", Arial, sans-serif;
+    --body: "Newsreader", Georgia, "Times New Roman", serif;
+    --mono: "DM Mono", monospace;
+    --art-grid: rgba(32, 39, 36, .12);
+    --shadow: 0 24px 60px rgba(32, 39, 36, .12);
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #171c19;
+    --surface: #222a25;
+    --ink: #eef0e9;
+    --muted: #a1aaa1;
+    --line: #3a443d;
+    --accent: #ff795c;
+    --mark: #d6ed5c;
+    --art-grid: rgba(238, 240, 233, .12);
+    --shadow: 0 24px 60px rgba(0, 0, 0, .24);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.125rem/1.65 var(--body);
+    transition: background-color .35s, color .35s;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; }
+  .wrap { max-width: 76rem; margin: 0 auto; padding: 0 3rem; }
+
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 0; font: 700 .82rem var(--display);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top nav { display: flex; align-items: center; gap: 2rem; }
+  header.top a { color: var(--ink); text-decoration: none; }
+  header.top nav a { transition: color .2s; }
+  header.top nav a:hover { color: var(--accent); }
+  .brand { display: flex; align-items: center; gap: .7rem; letter-spacing: .04em; }
+  .brand-mark { width: .7rem; height: .7rem; background: var(--accent); border-radius: 50%; }
+  .theme-toggle {
+    display: grid; place-items: center; width: 2.6rem; height: 2.6rem;
+    border: 1px solid var(--line); border-radius: 50%; background: transparent;
+    color: var(--ink); cursor: pointer; transition: transform .2s, background .2s;
+  }
+  .theme-toggle:hover { transform: rotate(-12deg); background: var(--surface); }
+  .theme-toggle svg { width: 1rem; height: 1rem; }
+
+  .hero {
+    min-height: 35rem; padding: 5rem 0 4.5rem; position: relative;
+    display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 2rem;
+  }
+  .hero-copy { position: relative; z-index: 1; }
+  .eyebrow, .section-kicker, .art-label {
+    font: 500 .72rem var(--mono); letter-spacing: .06em; text-transform: uppercase;
+  }
+  .eyebrow { display: flex; align-items: center; gap: .65rem; color: var(--muted); margin: 0 0 1.8rem; }
+  .eyebrow::before { content: ""; width: 1.8rem; height: 1px; background: var(--accent); }
+  .hero h1 {
+    max-width: 43rem; font: 800 clamp(3.5rem, 7vw, 6.8rem)/.88 var(--display);
+    letter-spacing: 0; margin: 0 0 1.25rem;
+  }
+  .hero-tagline {
+    max-width: 35rem; font: 800 clamp(1.8rem, 3vw, 2.45rem)/1.12 var(--display);
+    margin: 0 0 1.2rem;
+  }
+  .hero-tagline span {
+    display: inline; padding: 0 .12em .06em 0;
+    background: linear-gradient(transparent 61%, var(--mark) 61% 91%, transparent 91%);
+  }
+  .hero .intro { max-width: 35rem; margin: 0 0 1.75rem; font-size: 1.18rem; color: var(--muted); }
+  .btn {
+    display: inline-flex; align-items: center; gap: .8rem; padding: .9rem 1.1rem;
+    border: 1px solid var(--ink); background: var(--ink); color: var(--paper); text-decoration: none;
+    font: 700 .9rem var(--display); transition: gap .2s, background .2s, color .2s;
+  }
+  .btn:hover { gap: 1.15rem; background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn svg { width: 1rem; height: 1rem; }
+  .hero-art {
+    aspect-ratio: 1 / 1.03; min-height: 21rem; position: relative; overflow: hidden;
+    background: #e9b9a3; isolation: isolate;
+  }
+  .hero-art::before, .project-art::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; opacity: .6;
+    background-image: linear-gradient(var(--art-grid) 1px, transparent 1px), linear-gradient(90deg, var(--art-grid) 1px, transparent 1px);
+    background-size: 2.2rem 2.2rem; mask-image: linear-gradient(135deg, #000 0%, transparent 85%);
+  }
+  .hero-art .orb {
+    position: absolute; width: 72%; aspect-ratio: 1; right: -3%; top: 12%; border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%, #f5e7b7 0 8%, #ec7351 9% 39%, #d54231 40% 67%, #a52d2b 68%);
+    box-shadow: inset -2rem -2.5rem 3.5rem rgba(89, 31, 27, .22), 0 2rem 4rem rgba(105, 45, 34, .2);
+    animation: float 7s ease-in-out infinite;
+  }
+  .hero-art .orbit { position: absolute; width: 105%; height: 43%; right: -13%; top: 37%; border: 1px solid rgba(32, 39, 36, .6); border-radius: 50%; transform: rotate(-34deg); }
+  .hero-art .orbit::after { content: ""; position: absolute; width: .8rem; height: .8rem; border-radius: 50%; background: var(--mark); top: 5%; left: 23%; box-shadow: 0 0 0 .45rem rgba(214, 237, 92, .25); }
+  .hero-art .art-label { position: absolute; bottom: 1.3rem; left: 1.4rem; color: #342b28; }
+  .hero-art .art-number { position: absolute; right: 1.4rem; bottom: 1.2rem; font: 500 .75rem var(--mono); color: #342b28; }
+  section { padding: 5rem 0; border-top: 1px solid var(--line); }
+  .section-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 2rem; }
+  .section-kicker { color: var(--accent); display: block; margin-bottom: .65rem; }
+  h2 { font: 800 2.35rem/1.15 var(--display); margin: 0; letter-spacing: 0; }
+  .section-note { color: var(--muted); font: 500 .72rem var(--mono); }
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+
+  .project {
+    min-width: 0; background: var(--surface); overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .project:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .project-art { height: 13rem; position: relative; overflow: hidden; isolation: isolate; }
+  .project-art::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(135deg, transparent 48%, rgba(0,0,0,.08)); }
+  .project-art.one { background: #b6c8af; }
+  .project-art.two { background: #f0c26a; }
+  .project-art.three { background: #93b7bb; }
+  .project-art .art-shape { position: absolute; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+  .project:hover .art-shape { transform: scale(1.08) rotate(4deg); }
+  .one .art-shape { width: 9rem; height: 9rem; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #edf1cf, #e87953 50%, #8c4738 100%); top: 1.8rem; left: calc(50% - 4.5rem); box-shadow: 1.5rem 1.5rem 2.5rem rgba(36, 55, 43, .18); }
+  .two .art-shape { width: 10rem; height: 10rem; background: #29524b; transform: rotate(45deg); top: 1.5rem; left: calc(50% - 5rem); box-shadow: .8rem .8rem 0 rgba(255, 246, 207, .6); }
+  .three .art-shape { width: 8.7rem; height: 8.7rem; border: 1.6rem solid #edeee1; border-radius: 50%; top: 2.15rem; left: calc(50% - 4.35rem); box-shadow: inset 0 0 0 .8rem #557d7e; }
+  .project-art .art-label { position: absolute; bottom: 1rem; left: 1rem; color: #26322e; }
+  .project-content { padding: 1.4rem 1.3rem 1.5rem; }
+  .project-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: .9rem; }
+  .project time, .project small { font: 500 .68rem var(--mono); color: var(--muted); }
+  .project h3 { font: 800 1.25rem/1.25 var(--display); margin: 0 0 .5rem; }
+  .project h3 a { color: var(--ink); text-decoration: none; }
+  .project h3 a:hover { color: var(--accent); }
+  .project p { font-size: 1rem; line-height: 1.5; margin: 0 0 1rem; min-height: 4.5rem; }
+  .project small { display: inline-block; border-top: 1px solid var(--line); padding-top: .8rem; width: 100%; }
+
+  .about { display: grid; grid-template-columns: 1.3fr .7fr; gap: 5rem; align-items: start; }
+  .about p { max-width: 42rem; margin: 0; font-size: 1.45rem; line-height: 1.5; }
+  .about ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+  .about li { padding: .8rem 0; border-bottom: 1px solid var(--line); font: 600 .9rem var(--display); }
+  .about li::before { content: "+"; color: var(--accent); margin-right: .8rem; font-family: var(--mono); }
+  #contact { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  #contact h2 { margin: 0; }
+  #contact p { margin: 0; color: var(--muted); }
+  #contact p a { color: var(--ink); text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+
+  footer { padding: 1.5rem 0 2.5rem; color: var(--muted); font: 500 .72rem var(--mono); display: flex; gap: 1.5rem; align-items: center; }
+  footer a { color: var(--ink); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  footer span { margin-left: auto; }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  @keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(3deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 54rem) {
+    .wrap { padding: 0 1.5rem; }
+    .hero { min-height: 29rem; grid-template-columns: 1fr .75fr; }
+    .hero-art { min-height: 18rem; }
+    .projects { grid-template-columns: repeat(2, 1fr); }
+    .project:last-child { grid-column: span 2; }
+    .project:last-child .project-art { height: 10rem; }
+  }
+  @media (max-width: 38rem) {
+    .wrap { padding: 0 1.15rem; }
+    header.top { padding: 1rem 0; }
+    header.top nav { gap: .85rem; }
+    header.top nav a { font-size: .74rem; }
+    .brand { font-size: .72rem; gap: .45rem; }
+    .theme-toggle { width: 2.25rem; height: 2.25rem; }
+    .hero { min-height: auto; padding: 3.5rem 0 3rem; display: flex; flex-direction: column; align-items: stretch; gap: 2rem; }
+    .hero h1 { font-size: clamp(3rem, 13vw, 4.7rem); }
+    .hero-tagline { font-size: clamp(1.65rem, 7vw, 2rem); }
+    .hero-art { min-height: 16rem; aspect-ratio: 1.3 / 1; }
+    .hero-art .orb { width: 58%; right: 10%; }
+    section { padding: 3.5rem 0; }
+    .section-heading { align-items: start; gap: 1rem; }
+    h2 { font-size: 2rem; }
+    .section-note { text-align: right; max-width: 7.5rem; }
+    .projects { grid-template-columns: 1fr; gap: 1rem; }
+    .project:last-child { grid-column: auto; }
+    .project:last-child .project-art, .project-art { height: 12rem; }
+    .project p { min-height: 0; }
+    .about { grid-template-columns: 1fr; gap: 2rem; }
+    .about p { font-size: 1.25rem; }
+    #contact { align-items: start; flex-direction: column; gap: 1rem; }
+    footer { flex-wrap: wrap; gap: .9rem 1.2rem; }
+    footer span { margin-left: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>SHREYASH PAGAR</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Portfolio / Selected work</p>
+        <h1>SHREYASH<br>PAGAR</h1>
+        <p class="hero-tagline">I design and build <span>useful things</span> for the web.</p>
+        <p class="intro">I create thoughtful web experiences, bringing together clean design and practical development with HTML, CSS, JavaScript, and modern tools.</p>
+        <a class="btn" href="#work">See my work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb"></div><div class="orbit"></div>
+        <span class="art-label">Curiosity in motion</span><span class="art-number">01 / 03</span>
+      </div>
+    </div>
+
+    <section id="work" class="reveal">
+      <div class="section-heading">
+        <div><span class="section-kicker">A few things I've made</span><h2>Selected work</h2></div>
+        <span class="section-note">2024 — 2026&nbsp; / &nbsp;01—03</span>
+      </div>
+
+      <div class="projects">
+      <article class="project">
+        <div class="project-art one" aria-hidden="true"><div class="art-shape"></div><span class="art-label">Digital / 01</span></div>
+        <div class="project-content">
+          <div class="project-meta"><time datetime="2026">2026</time><span class="section-kicker">01</span></div>
+          <h3><a href="#">Project One</a></h3>
+          <p>One sentence on the problem, what you did, and the outcome (for example, "cut checkout time by 30%").</p>
+          <small>HTML, CSS, JavaScript</small>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-art two" aria-hidden="true"><div class="art-shape"></div><span class="art-label">Systems / 02</span></div>
+        <div class="project-content">
+          <div class="project-meta"><time datetime="2025">2025</time><span class="section-kicker">02</span></div>
+          <h3><a href="#">Project Two</a></h3>
+          <p>Describe your role and the result, not just the tools you used.</p>
+          <small>React, Node.js</small>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-art three" aria-hidden="true"><div class="art-shape"></div><span class="art-label">Experiments / 03</span></div>
+        <div class="project-content">
+          <div class="project-meta"><time datetime="2024">2024</time><span class="section-kicker">03</span></div>
+          <h3><a href="#">Project Three</a></h3>
+          <p>Link to a live site, a case study, or a GitHub repo.</p>
+          <small>Figma, Python</small>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section id="about" class="reveal">
+      <div class="section-heading"><div><span class="section-kicker">A little context</span><h2>About</h2></div></div>
+      <div class="about">
+        <p>I’m Shreyash Pagar, a web creator who enjoys turning ideas into clear, useful digital experiences. I care about thoughtful design, intuitive interactions, and building for the web with attention to detail.</p>
+        <ul>
+          <li>HTML, CSS &amp; JavaScript</li>
+          <li>React &amp; Node.js</li>
+          <li>UI Design with Figma</li>
+          <li>Python</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <div><span class="section-kicker">Let's make something good</span><h2>Contact</h2></div>
+      <p>Have a project in mind? <a href="mailto:you@example.com">you@example.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://github.com/yourname">GitHub</a>
+    <a href="https://linkedin.com/in/yourname">LinkedIn</a>
+    <span>©️ 2026 Shreyash Pagar</span>
+  </footer>
+</div>
+<script>
+  const root = document.documentElement;
+  const themeToggle = document.querySelector('.theme-toggle');
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  if (savedTheme) root.dataset.theme = savedTheme;
+  if (root.dataset.theme === 'dark') {
+    themeToggle.setAttribute('aria-label', 'Switch to light theme');
+    themeToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5a8.5 8.5 0 1 0 12 12Z"></path></svg>';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = nextTheme;
+    localStorage.setItem('portfolio-theme', nextTheme);
+    themeToggle.setAttribute('aria-label', `Switch to ${nextTheme === 'dark' ? 'light' : 'dark'} theme`);
+    themeToggle.innerHTML = nextTheme === 'dark'
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5a8.5 8.5 0 1 0 12 12Z"></path></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>';
+  });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(section => revealObserver.observe(section));
+</script>
+</body>
+</html>
